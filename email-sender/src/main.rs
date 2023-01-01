@@ -1,17 +1,18 @@
 mod pubsub;
 mod handler;
+
  
-use pubsub::handle_pubsub;
+// use pubsub::handle_pubsub;
 use warp::Filter;
 
 #[tokio::main]
 async fn main() {
-    let handler = warp::post()
-        .and(warp::body::json())
-        .map(handle_pubsub);
+    // let handler = warp::post()
+    //     .and(warp::body::json())
+    //     .map(handle_pubsub);
 
-    let port = get_port();
-    warp::serve(handler).run(([0; 16], port)).await  
+    // let port = get_port();
+    // warp::serve(handler).run(([0; 16], port)).await  
 }
 
 fn get_port() -> u16 {
