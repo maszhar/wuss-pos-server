@@ -1,11 +1,9 @@
-use std::str::FromStr;
-
+use super::{error::Result, Task};
 use mongodb::{
     bson::{self, doc, oid::ObjectId},
     Collection, Database,
 };
-
-use super::{error::Result, task::Task};
+use std::str::FromStr;
 
 pub struct TaskModel {
     coll: Collection<Task>,
