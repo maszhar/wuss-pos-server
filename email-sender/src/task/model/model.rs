@@ -16,14 +16,14 @@ impl TaskModel {
         Self { coll }
     }
 
-    pub async fn get_task(&self, task_id: String) -> Result<Option<Task>> {
+    pub async fn get_task(&self, task_id: &String) -> Result<Option<Task>> {
         let id = ObjectId::from_str(task_id.as_str())?;
         let task = self.coll.find_one(doc! {"_id": id}, None).await?;
 
         Ok(task)
     }
 
-    pub async fn update_task(&self, task_id: String, update: Task) -> Result<Task> {
+    pub async fn update_task(&self, task_id: &String, update: Task) -> Result<Task> {
         let id = ObjectId::from_str(task_id.as_str())?;
         self.coll
             .update_one(
@@ -68,7 +68,7 @@ mod tests {
         let model = TaskModel::new(db);
 
         let task = model
-            .get_task("999999999999999999999999".into())
+            .get_task(&"999999999999999999999999".into())
             .await
             .unwrap();
         assert!(task.is_some());
@@ -89,14 +89,14 @@ mod tests {
         let model = TaskModel::new(db);
 
         let mut task = model
-            .get_task("999999999999999999999999".into())
+            .get_task(&"999999999999999999999999".into())
             .await
             .unwrap()
             .unwrap();
 
         task.handler = Some("[EMAIL_SENDER]: 000-00000-00000".into());
         let updated_task = model
-            .update_task("999999999999999999999999".into(), task)
+            .update_task(&"999999999999999999999999".into(), task)
             .await
             .unwrap();
         assert_eq!(
@@ -106,7 +106,7 @@ mod tests {
 
         // Try to get task again
         let task = model
-            .get_task("999999999999999999999999".into())
+            .get_task(&"999999999999999999999999".into())
             .await
             .unwrap()
             .unwrap();

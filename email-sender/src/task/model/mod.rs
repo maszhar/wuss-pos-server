@@ -1,5 +1,5 @@
 mod task;
-mod error;
+pub mod error;
 mod model;
 
 pub use task::Task;
