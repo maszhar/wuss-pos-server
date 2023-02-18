@@ -1,4 +1,4 @@
-
+#[no_mangle]
 pub fn load_env_variables() -> Result<(), String> {
     let env_location = std::env::var("ENV_LOCATION").unwrap_or("local".into());
     match env_location.as_str() {
