@@ -13,7 +13,7 @@ impl UserModel {
         }
     }
 
-    pub async fn get_user_by_username(&self, username: String) -> Result<Option<User>> {
+    pub async fn get_user_by_username(&self, username: &String) -> Result<Option<User>> {
         Ok(self
             .collection
             .find_one(doc! {"username": username}, None)
@@ -40,7 +40,7 @@ mod tests {
         let db_instance = init_db().await;
         let model = UserModel::new(db_instance);
 
-        let found_user = model.get_user_by_username(username.into()).await.unwrap();
+        let found_user = model.get_user_by_username(&username.into()).await.unwrap();
 
         assert!(found_user.is_some());
     }
