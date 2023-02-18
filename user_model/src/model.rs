@@ -2,7 +2,6 @@ use mongodb::{Database, Collection, bson::doc};
 
 use crate::types::User;
 
-#[derive(Clone)]
 pub struct UserModel {
     collection: Collection<User>
 }

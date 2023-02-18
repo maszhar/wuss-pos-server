@@ -1,5 +1,5 @@
 [package]
-name = "user-model-mongo"
+name = "user_model"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,7 +7,6 @@ edition = "2021"
 
 [lib]
 name = "user_model"
-crate-type = ["dylib"]
 
 [dependencies]
 mongodb = "2.3.1"
