@@ -1,6 +1,6 @@
 
 pub mod types;
 pub mod model;
+pub mod error;
 
-pub use model::UserModel;
 pub use types::User;
